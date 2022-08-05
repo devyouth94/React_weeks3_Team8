@@ -7,11 +7,12 @@ import { _getPosted } from "../redux/postslice";
 const Home = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const myValue = state.posts.posts;
+  // 이게 있어야 state값에 넣어줄수 있다.
 
   useEffect(() => {
     dispatch(_getPosted());
   }, []);
+  // _getPosted가 바로 실행된다.
 
   const posts = state.posts.posts;
 
@@ -37,6 +38,7 @@ const Home = () => {
                   >
                     상세페이지
                   </Link>
+                  {/* Link에서 원하는 자료를 보내고 싶을때는 state={{}}를 사용해서 보내면 된다. */}
                 </div>
               );
             })}
