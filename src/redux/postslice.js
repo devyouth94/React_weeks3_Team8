@@ -1,12 +1,14 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-  posts: [],
+  posts: [{ name: "둘리", contents: "그냥요", title: "하기싫어요" }],
   isLoading: false,
   error: null,
 };
 
-const _post = createAsyncThunk("", async () => {});
+const _post = createAsyncThunk("/post", async (value) => {
+  console.log(value);
+});
 
 const _delete = createAsyncThunk("", async () => {});
 
