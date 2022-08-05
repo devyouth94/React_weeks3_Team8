@@ -1,9 +1,16 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "name": "길동이",
+      "title": "하기싫어",
+      "contents": "그냥",
+      "id": 1
+    },
+    {
+      "name": "둘리",
+      "title": "됐다",
+      "contents": "왜된거지",
+      "id": 2
     }
   ],
   "comments": [

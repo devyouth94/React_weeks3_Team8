@@ -1,13 +1,21 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
-  posts: [{ name: "둘리", contents: "그냥요", title: "하기싫어요" }],
+  posts: [],
   isLoading: false,
   error: null,
 };
 
-const _post = createAsyncThunk("/post", async (value) => {
-  console.log(value);
+const _post = createAsyncThunk("/posted", async (value) => {
+  const posted = await axios.post("http://localhost:5001/posts", value);
+  return posted.data;
+});
+
+const _getPosted = createAsyncThunk("/posted", async () => {
+  const getPostedFile = await axios.get("http://localhost:5001/posts");
+  // const getPosted = getPostedFile.data;
+  return getPostedFile.data;
 });
 
 const _delete = createAsyncThunk("", async () => {});
@@ -19,18 +27,17 @@ const postslice = createSlice({
     post: (state, action) => {},
   },
   extraReducers: (builder) => {
-    builder.addCase(_post.pending, (state, action) => {
-      state.status = "Loading";
-    });
     builder.addCase(_post.fulfilled, (state, action) => {
-      state.status = "Complited";
+      // console.log(state, action);
     });
-    builder.addCase(_post.rejected, (state, action) => {
-      state.status = "Fail";
+  },
+  extraReducers: (builder) => {
+    builder.addCase(_getPosted.fulfilled, (state, action) => {
+      state.posts = action.payload;
     });
   },
 });
 
-export { _post, _delete };
+export { _post, _delete, _getPosted };
 export const { post } = postslice.actions;
 export default postslice.reducer;
