@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
+import { _detailPost } from "../redux/postslice";
 
 const Detail = (props) => {
   const params = useParams();
   const location = useLocation();
-  // Link에서 원하는 데이터를 state로 보내면 location이라는 훅을 사용해서 볼수 있다.
-  console.log(location); // 데이터가 들어온것을 볼수 있다.
+  const dispatch = useDispatch();
 
   const name = location.state.name;
   const contents = location.state.contents;
   const title = location.state.title;
-  // 이름정해서 나눠주기
+
+  const detail_name = useRef(null);
+  const detail_contents = useRef(null);
+
+  const detailPost = () => {
+    dispatch(
+      _detailPost({
+        postId: params.id,
+        name: detail_name.current.value,
+        contents: detail_contents.current.value,
+      })
+    );
+  };
 
   return (
     <>
@@ -20,6 +33,11 @@ const Detail = (props) => {
         <p>{title}</p>
         <p>{contents}</p>
       </div>
+      <div>
+        <input ref={detail_name} />
+        <input ref={detail_contents} />
+      </div>
+      <button onClick={detailPost}>입력</button>
     </>
   );
 };

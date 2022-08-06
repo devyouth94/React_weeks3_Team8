@@ -11,14 +11,19 @@ const _post = createAsyncThunk("/posted", async (value) => {
   const posted = await axios.post("http://localhost:5001/posts", value);
   return posted.data;
 });
-// ref.current.value값으로 받아온 3개가 value에 들어갔다.
-// axios post로 url에 value를 넣어줬다. 그 후 넣었던 값을 가지고 extraReducers의 _post 넘어간다.
 
 const _getPosted = createAsyncThunk("/posted", async () => {
   const getPostedFile = await axios.get("http://localhost:5001/posts");
   return getPostedFile.data;
 });
-// axios에서 get해서 getPostedFile로 넘겨줬고 그것의 데이터를 extraReducers의 _getPosted로 return해줌. .data를 안해주면 직렬화 안됐다고 애러남
+
+const _detailPost = createAsyncThunk("posted/detail", async (value) => {
+  const getDetailPostedFile = await axios.post(
+    "http://localhost:5001/comments",
+    value
+  );
+  return getDetailPostedFile;
+});
 
 const _delete = createAsyncThunk("", async () => {});
 
@@ -43,6 +48,6 @@ const postslice = createSlice({
   },
 });
 
-export { _post, _delete, _getPosted };
+export { _post, _delete, _getPosted, _detailPost };
 export const { post } = postslice.actions;
 export default postslice.reducer;

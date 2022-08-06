@@ -4,7 +4,18 @@
       "name": "길동이",
       "title": "하기싫어",
       "contents": "그냥",
-      "id": 1
+      "id": 1,
+      "cmts": [
+        {
+          "name": "길동이"
+        },
+        {
+          "name": "길동이"
+        },
+        {
+          "name": "길동이"
+        }
+      ]
     },
     {
       "name": "둘리",
@@ -17,6 +28,24 @@
       "title": "하기",
       "contents": "싫다",
       "id": 3
+    },
+    {
+      "name": "테스트",
+      "title": "테스트",
+      "contents": "테스트",
+      "id": 4
+    },
+    {
+      "name": "ㅁ",
+      "title": "ㅁ",
+      "contents": "ㅁ",
+      "id": 5
+    },
+    {
+      "name": "1",
+      "title": "1",
+      "contents": "1",
+      "id": 6
     }
   ],
   "comments": [
@@ -24,6 +53,18 @@
       "id": 1,
       "body": "some comment",
       "postId": 1
+    },
+    {
+      "postId": "1",
+      "name": "테스트",
+      "contents": "테스트트",
+      "id": 2
+    },
+    {
+      "postId": "6",
+      "name": "",
+      "contents": "",
+      "id": 3
     }
   ],
   "profile": {
