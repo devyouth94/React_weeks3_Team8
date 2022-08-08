@@ -19,7 +19,7 @@ const _getDetailPosted = createAsyncThunk("/detail", async (value) => {
   return getDetail.data;
 });
 
-const _deleteDetailPosted = createAsyncThunk("/detail", async (value) => {
+const _deleteDetailPosted = createAsyncThunk("/delete", async (value) => {
   await axios.delete(`http://localhost:5001/comments/${value}`);
   return value;
 });
@@ -30,12 +30,16 @@ export const commentsSlice = createSlice({
   reducers: {},
   extraReducers: {
     [_getDetailPosted.fulfilled]: (state, action) => {
-      console.log("get실행");
       state.posts = action.payload;
     },
     [_Detailpost.fulfilled]: (state, action) => {
-      console.log("post실행");
       state.posts.push(action.payload);
+    },
+    [_deleteDetailPosted.fulfilled]: (state, action) => {
+      const result = state.posts.filter((value) => {
+        return value.id != action.payload;
+      });
+      state.posts = result;
     },
   },
 });

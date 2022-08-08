@@ -15,10 +15,8 @@ const Detail = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // console.log(state);
 
   const detailArr = state.posts;
-
   const getedId = 1;
 
   useEffect(() => {
@@ -31,17 +29,36 @@ const Detail = (props) => {
 
   const title_ref = useRef(null);
   const contents_ref = useRef(null);
+  const pawd_ref = useRef(null);
+  const pswd_ref = useRef(null);
 
   const putDetail = () => {
-    dispatch(
-      _Detailpost({
-        title: title_ref.current.value,
-        contents: contents_ref.current.value,
-        postId: params.id,
-      })
-    );
-    title_ref.current.value = "";
-    contents_ref.current.value = "";
+    if (title_ref.current.value === "") {
+      alert("제목을 넣어주세요");
+    } else {
+      dispatch(
+        _Detailpost({
+          title: title_ref.current.value,
+          contents: contents_ref.current.value,
+          pswd: pawd_ref.current.value,
+          postId: params.id,
+        })
+      );
+      title_ref.current.value = "";
+      contents_ref.current.value = "";
+      pawd_ref.current.value = "";
+    }
+  };
+
+  const deleteComments = (value) => {
+    console.log(value, pswd_ref.current.value);
+    if (pswd_ref.current.value === "") {
+      alert("비밀번호를 입력해주세요");
+    } else if (value.pswd == pswd_ref.current.value) {
+      dispatch(_deleteDetailPosted(value.id));
+    } else {
+      alert("비밀번호가 틀렸습니다.");
+    }
   };
 
   const goback = () => {
@@ -69,24 +86,42 @@ const Detail = (props) => {
         <Line />
       </div>
       <div>
-        <input ref={title_ref} onKeyPress={pressEnter} />
-        <input ref={contents_ref} onKeyPress={pressEnter} />
+        <input
+          ref={title_ref}
+          type="text"
+          placeholder="이름"
+          onKeyPress={pressEnter}
+        />
+        <input
+          ref={contents_ref}
+          type="text"
+          placeholder="내용"
+          onKeyPress={pressEnter}
+        />
+        <input
+          ref={pawd_ref}
+          type="password"
+          placeholder="비밀번호"
+          onKeyPress={pressEnter}
+        />
         <button onClick={putDetail}>입력</button>
       </div>
       <div>
         {detailArr.length &&
           detailArr.map((value) => {
+            console.log(value.pswd);
             return (
               <div key={"detailKey" + value.id}>
                 <div>
                   {value.title}:: {value.contents}
-                  <DeleteBtn
+                  <input placeholder="비밀번호" id={"pswd" + value.id} />
+                  <button
                     onClick={() => {
-                      dispatch(_deleteDetailPosted(value.id));
+                      deleteComments({ id: value.id, pswd: value.pswd });
                     }}
                   >
                     삭제
-                  </DeleteBtn>
+                  </button>
                 </div>
               </div>
             );
@@ -104,10 +139,6 @@ const Bicbox = styled.div`
 
 const Line = styled.hr`
   margin: 20px 0px 20px 0px;
-`;
-
-const DeleteBtn = styled.button`
-  margin-left: 20px;
 `;
 
 export default Detail;
