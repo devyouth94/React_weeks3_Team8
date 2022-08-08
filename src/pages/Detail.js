@@ -97,7 +97,7 @@ const Detail = (props) => {
           placeholder="내용"
           onKeyPress={pressEnter}
         />
-        <input
+        <PwBox
           ref={pawd_ref}
           type="password"
           placeholder="비밀번호"
@@ -110,21 +110,24 @@ const Detail = (props) => {
           detailArr.map((value) => {
             return (
               <div key={"detailKey" + value.id}>
-                <div id={"pswd" + value.id}>
+                <CommentsBox>
                   {value.title}:: {value.contents}
-                  <input placeholder="비밀번호" />
-                  <button
-                    onClick={(e) => {
-                      deleteComments({
-                        id: value.id,
-                        pswd: value.pswd,
-                        input: e.target.previousSibling.value,
-                      });
-                    }}
-                  >
-                    삭제
-                  </button>
-                </div>
+                  <div>
+                    <PwBox placeholder="비밀번호" />
+                    <button
+                      onClick={(e) => {
+                        deleteComments({
+                          id: value.id,
+                          pswd: value.pswd,
+                          input: e.target.previousSibling.value,
+                        });
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </div>
+                </CommentsBox>
+                <CommentsLine />
               </div>
             );
           })}
@@ -141,6 +144,24 @@ const Bicbox = styled.div`
 
 const Line = styled.hr`
   margin: 20px 0px 20px 0px;
+`;
+
+const CommentsBox = styled.div`
+  width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: 5px;
+`;
+
+const PwBox = styled.input`
+  width: 100px;
+`;
+
+const CommentsLine = styled.hr`
+  margin: auto;
+  width: 70%;
 `;
 
 export default Detail;
