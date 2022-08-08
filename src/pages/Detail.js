@@ -26,13 +26,20 @@ const Detail = () => {
   };
 
   const onClickSave = () => {
-    dispatch(__updateDetail({ ...state, content: updateArticle }));
-    setEditMode(false);
+    if (updateArticle.trim().length === 0) {
+      alert("내용이 비어있습니다.");
+    } else {
+      dispatch(__updateDetail({ ...state, content: updateArticle }));
+      setEditMode(false);
+    }
   };
 
   const onClickDelete = () => {
-    dispatch(__deleteDetail(id));
-    navigate("/");
+    const confirm = window.confirm("정말 삭제하시겠습니까?");
+    if (confirm) {
+      dispatch(__deleteDetail(id));
+      navigate("/");
+    }
   };
 
   return (
