@@ -60,6 +60,18 @@ const Detail = (props) => {
     }
   };
 
+  const editComments = (value) => {
+    console.log(value);
+    if (value.input === "") {
+      alert("비밀번호를 입력해주세요");
+    } else if (value.input !== value.pswd) {
+      alert("비밀번호가 틀렸습니다.");
+    } else if (value.input == value.pswd) {
+      document.getElementById(`inputbox${value.id}`).style.display = "flex";
+      console.log(`inputbox${value.id}`);
+    }
+  };
+
   const goback = () => {
     navigate(-1);
   };
@@ -84,27 +96,31 @@ const Detail = (props) => {
         <button onClick={goback}>뒤로가기</button>
         <Line />
       </div>
-      <div>
-        <input
-          ref={title_ref}
-          type="text"
-          placeholder="이름"
-          onKeyPress={pressEnter}
-        />
-        <input
-          ref={contents_ref}
-          type="text"
-          placeholder="내용"
-          onKeyPress={pressEnter}
-        />
-        <PwBox
-          ref={pawd_ref}
-          type="password"
-          placeholder="비밀번호"
-          onKeyPress={pressEnter}
-        />
-        <button onClick={putDetail}>입력</button>
-      </div>
+      <InputBox>
+        <div>
+          <input
+            ref={title_ref}
+            type="text"
+            placeholder="이름"
+            onKeyPress={pressEnter}
+          />
+          <input
+            ref={contents_ref}
+            type="text"
+            placeholder="내용"
+            onKeyPress={pressEnter}
+          />
+        </div>
+        <div>
+          <PwBox
+            ref={pawd_ref}
+            type="password"
+            placeholder="비밀번호"
+            onKeyPress={pressEnter}
+          />
+          <button onClick={putDetail}>입력</button>
+        </div>
+      </InputBox>
       <div>
         {detailArr.length &&
           detailArr.map((value) => {
@@ -116,10 +132,21 @@ const Detail = (props) => {
                     <PwBox placeholder="비밀번호" />
                     <button
                       onClick={(e) => {
+                        editComments({
+                          input: e.target.previousSibling.value,
+                          id: value.id,
+                          pswd: value.pswd,
+                        });
+                      }}
+                    >
+                      수정
+                    </button>
+                    <button
+                      onClick={(e) => {
                         deleteComments({
                           id: value.id,
                           pswd: value.pswd,
-                          input: e.target.previousSibling.value,
+                          input: e.target.previousSibling.previousSibling.value,
                         });
                       }}
                     >
@@ -127,6 +154,13 @@ const Detail = (props) => {
                     </button>
                   </div>
                 </CommentsBox>
+                <EditInputBox id={`inputbox` + value.id}>
+                  <div>
+                    <input placeholder="이름" />
+                    <input placeholder="내용" />
+                  </div>
+                  <button>완료</button>
+                </EditInputBox>
                 <CommentsLine />
               </div>
             );
@@ -146,6 +180,14 @@ const Line = styled.hr`
   margin: 20px 0px 20px 0px;
 `;
 
+const InputBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: auto;
+  margin-bottom: 40px;
+`;
+
 const CommentsBox = styled.div`
   width: 70%;
   margin: auto;
@@ -162,6 +204,17 @@ const PwBox = styled.input`
 const CommentsLine = styled.hr`
   margin: auto;
   width: 70%;
+`;
+
+const EditInputBox = styled.div`
+  display: flex;
+  width: 70%;
+  margin-left: 100px;
+  justify-content: space-between;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  display: none;
 `;
 
 export default Detail;
