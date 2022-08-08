@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  __deleteDetail,
-  __getDetail,
-  __updateDetail,
-} from "../redux/slices/detailSlice";
+import { __deleteDetail, __getDetail, __updateDetail } from "../redux/slices/detailSlice";
 
 const Detail = () => {
   const dispatch = useDispatch();
