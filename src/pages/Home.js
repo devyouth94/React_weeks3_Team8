@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { post, _getPosted } from "../redux/postslice";
+import { _getPosted } from "../redux/postslice";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(_getPosted());
   }, []);
-  console.log(posts);
 
   return (
     <>
@@ -24,19 +23,19 @@ const Home = () => {
           {posts.length &&
             posts.map((value) => {
               return (
-                <div key={value.id}>
-                  글쓴이: {value.name} {value.title}: {value.contents}
-                  <Link
-                    to={`/detail/${value.id}`}
-                    state={{
-                      name: value.name,
-                      contents: value.contents,
-                      title: value.title,
-                    }}
-                  >
-                    상세페이지
-                  </Link>
-                </div>
+                <Link
+                  key={`linkKey` + value.id}
+                  to={`/detail/${value.id}`}
+                  state={{
+                    name: value.name,
+                    contents: value.contents,
+                    title: value.title,
+                  }}
+                >
+                  <div key={`key` + value.id}>
+                    글쓴이: {value.name} {value.title}: {value.contents}
+                  </div>
+                </Link>
               );
             })}
         </div>
@@ -49,6 +48,15 @@ const HomeBox = styled.div`
   background-color: lightgreen;
   max-width: 80%;
   margin: auto;
+  button {
+    text-decoration: none;
+  }
 `;
+
+// const Todetail = styled.Link`
+//   button {
+//     text-decoration: none;
+//   }
+// `;
 
 export default Home;

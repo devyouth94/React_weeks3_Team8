@@ -1,72 +1,61 @@
 {
   "posts": [
     {
-      "name": "길동이",
-      "title": "하기싫어",
-      "contents": "그냥",
-      "id": 1,
-      "cmts": [
-        {
-          "name": "길동이"
-        },
-        {
-          "name": "길동이"
-        },
-        {
-          "name": "길동이"
-        }
-      ]
-    },
-    {
       "name": "둘리",
       "title": "됐다",
       "contents": "왜된거지",
       "id": 2
     },
     {
-      "name": "나는",
-      "title": "하기",
-      "contents": "싫다",
+      "name": "123",
+      "title": "123",
+      "contents": "123",
       "id": 3
+    },
+    {
+      "name": "123312",
+      "title": "123",
+      "contents": "12312",
+      "id": 4
+    },
+    {
+      "name": "123",
+      "title": "323",
+      "contents": "3232",
+      "id": 5
+    },
+    {
+      "name": "33",
+      "title": "33",
+      "contents": "33",
+      "id": 6
+    },
+    {
+      "name": "33",
+      "title": "33",
+      "contents": "33",
+      "id": 7
+    },
+    {
+      "name": "22",
+      "title": "12",
+      "contents": "22",
+      "id": 8
+    },
+    {
+      "name": "22",
+      "title": "222",
+      "contents": "2",
+      "id": 9
     },
     {
       "name": "테스트",
       "title": "테스트",
       "contents": "테스트",
-      "id": 4
-    },
-    {
-      "name": "ㅁ",
-      "title": "ㅁ",
-      "contents": "ㅁ",
-      "id": 5
-    },
-    {
-      "name": "1",
-      "title": "1",
-      "contents": "1",
-      "id": 6
+      "id": 10
     }
   ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    },
-    {
-      "postId": "1",
-      "name": "테스트",
-      "contents": "테스트트",
-      "id": 2
-    },
-    {
-      "postId": "6",
-      "name": "",
-      "contents": "",
-      "id": 3
-    }
-  ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   }

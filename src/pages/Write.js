@@ -1,16 +1,28 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { _post } from "../redux/postslice";
 
 const Write = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const goback = () => {
     navigate(-1);
   };
+
+  // const [posted, setPosted] = useState({
+  //   name: "",
+  //   title: "",
+  //   contents: "",
+  // });
+
+  // const onChangehandler = (event) => {
+  //   const { name, value } = event.target;
+  //   setPosted({ ...posted, [name]: value });
+  // };
 
   const name_ref = useRef(null);
   const title_ref = useRef(null);
@@ -29,6 +41,13 @@ const Write = () => {
     contents_ref.current.value = "";
     goback();
   };
+
+  if (location.state) {
+    console.log(location.state);
+    name_ref.current.value = "s";
+    title_ref.current.value = "s";
+    contents_ref.current.value = "s";
+  }
 
   return (
     <>
