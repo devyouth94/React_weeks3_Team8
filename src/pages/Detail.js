@@ -51,12 +51,11 @@ const Detail = (props) => {
   };
 
   const deleteComments = (value) => {
-    console.log(value, pswd_ref.current.value);
-    if (pswd_ref.current.value === "") {
+    if (value.input === "") {
       alert("비밀번호를 입력해주세요");
-    } else if (value.pswd == pswd_ref.current.value) {
+    } else if (value.input == value.pswd) {
       dispatch(_deleteDetailPosted(value.id));
-    } else {
+    } else if (value.input !== value.pswd) {
       alert("비밀번호가 틀렸습니다.");
     }
   };
@@ -109,15 +108,18 @@ const Detail = (props) => {
       <div>
         {detailArr.length &&
           detailArr.map((value) => {
-            console.log(value.pswd);
             return (
               <div key={"detailKey" + value.id}>
-                <div>
+                <div id={"pswd" + value.id}>
                   {value.title}:: {value.contents}
-                  <input placeholder="비밀번호" id={"pswd" + value.id} />
+                  <input placeholder="비밀번호" />
                   <button
-                    onClick={() => {
-                      deleteComments({ id: value.id, pswd: value.pswd });
+                    onClick={(e) => {
+                      deleteComments({
+                        id: value.id,
+                        pswd: value.pswd,
+                        input: e.target.previousSibling.value,
+                      });
                     }}
                   >
                     삭제
