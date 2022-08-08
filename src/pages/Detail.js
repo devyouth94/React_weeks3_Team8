@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { __getDetail, __updateDetail } from "../redux/slices/detailSlice";
+import {
+  __deleteDetail,
+  __getDetail,
+  __updateDetail,
+} from "../redux/slices/detailSlice";
 
 const Detail = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const state = useSelector((state) => state.detail.article);
 
@@ -23,6 +28,11 @@ const Detail = () => {
   const onClickSave = () => {
     dispatch(__updateDetail({ ...state, content: updateArticle }));
     setEditMode(false);
+  };
+
+  const onClickDelete = () => {
+    dispatch(__deleteDetail(id));
+    navigate("/");
   };
 
   return (
@@ -51,7 +61,7 @@ const Detail = () => {
       ) : (
         <div>
           <button onClick={onClickUpdate}>수정</button>
-          <button>삭제</button>
+          <button onClick={onClickDelete}>삭제</button>
         </div>
       )}
     </>
