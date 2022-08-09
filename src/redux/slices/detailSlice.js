@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { server_url } from ".";
 
 export const __getDetail = createAsyncThunk("detail/getDetail", async (id, thunkAPI) => {
   try {
-    const { data } = await axios.get(`http://localhost:3001/article/${id}`);
+    const { data } = await axios.get(`${server_url}/article/${id}`);
     return thunkAPI.fulfillWithValue(data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -12,7 +13,7 @@ export const __getDetail = createAsyncThunk("detail/getDetail", async (id, thunk
 
 export const __updateDetail = createAsyncThunk("detail/updateDetail", async (payload, thunkAPI) => {
   try {
-    const { data } = await axios.patch(`http://localhost:3001/article/${payload.id}`, payload);
+    const { data } = await axios.patch(`${server_url}/article/${payload.id}`, payload);
     return thunkAPI.fulfillWithValue(data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -21,7 +22,7 @@ export const __updateDetail = createAsyncThunk("detail/updateDetail", async (pay
 
 export const __deleteDetail = createAsyncThunk("detail/deleteDetail", async (id, thunkAPI) => {
   try {
-    const { data } = await axios.delete(`http://localhost:3001/article/${id}`);
+    const { data } = await axios.delete(`${server_url}/article/${id}`);
     return thunkAPI.fulfillWithValue(data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);

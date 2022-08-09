@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { server_url } from ".";
 
 const initialState = {
   article: [],
@@ -9,7 +10,7 @@ const initialState = {
 
 const _postArticle = createAsyncThunk("/postarticle", async (value, thunkAPI) => {
   try {
-    const data = await axios.post("http://localhost:3001/article", value);
+    const data = await axios.post(`${server_url}/article`, value);
     return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -18,7 +19,7 @@ const _postArticle = createAsyncThunk("/postarticle", async (value, thunkAPI) =>
 
 const _getArticle = createAsyncThunk("/getarticle", async (_, thunkAPI) => {
   try {
-    const data = await axios.get("http://localhost:3001/article");
+    const data = await axios.get(`${server_url}/article`);
     return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);

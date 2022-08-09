@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { server_url } from ".";
 
 const initialState = {
   posts: [],
@@ -9,7 +10,7 @@ const initialState = {
 
 const _Detailpost = createAsyncThunk("detail/post", async (value, thunkAPI) => {
   try {
-    const detailpost = await axios.post("http://localhost:3001/comments", value);
+    const detailpost = await axios.post(`${server_url}/comments`, value);
     return thunkAPI.fulfillWithValue(detailpost.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -18,7 +19,7 @@ const _Detailpost = createAsyncThunk("detail/post", async (value, thunkAPI) => {
 
 const _getDetailPosted = createAsyncThunk("/detail", async (value, thunkAPI) => {
   try {
-    const getDetail = await axios.get(`http://localhost:3001/comments?postId=${value}`);
+    const getDetail = await axios.get(`${server_url}/comments?postId=${value}`);
     return thunkAPI.fulfillWithValue(getDetail.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -27,7 +28,7 @@ const _getDetailPosted = createAsyncThunk("/detail", async (value, thunkAPI) => 
 
 const _deleteDetailPosted = createAsyncThunk("/delete", async (value, thunkAPI) => {
   try {
-    await axios.delete(`http://localhost:3001/comments/${value}`);
+    await axios.delete(`${server_url}/comments/${value}`);
     return thunkAPI.fulfillWithValue(value);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -42,7 +43,7 @@ const _editDetailPosted = createAsyncThunk("detail/edit", async (value, thunkAPI
       pswd: value.pswd,
       postId: value.postId,
     };
-    const getData = await axios.put(`http://localhost:3001/comments/${value.id}`, putvalue);
+    const getData = await axios.put(`${server_url}/comments/${value.id}`, putvalue);
     return thunkAPI.fulfillWithValue(getData.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
