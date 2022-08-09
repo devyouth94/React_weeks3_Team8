@@ -1,5 +1,5 @@
-import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   article: [],
@@ -9,25 +9,23 @@ const initialState = {
 
 const _postArticle = createAsyncThunk("/postarticle", async (value, thunkAPI) => {
   try {
-    const data = await axios.post('http://localhost:3001/article', value);
+    const data = await axios.post("http://localhost:3001/article", value);
     return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }
 });
 
-const _getArticle = createAsyncThunk("/getarticle", async (value, thunkAPI) => {
+const _getArticle = createAsyncThunk("/getarticle", async (_, thunkAPI) => {
   try {
-    const data = await axios.get('http://localhost:3001/article');
+    const data = await axios.get("http://localhost:3001/article");
     return thunkAPI.fulfillWithValue(data.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }
 });
 
-const _delete = createAsyncThunk("", async () => {});
-
-const postslice = createSlice({
+const postSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {},
@@ -55,10 +53,9 @@ const postslice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    
   },
 });
 
 export { _postArticle, _getArticle };
-export const { post } = postslice.actions;
-export default postslice.reducer;
+export const { post } = postSlice.actions;
+export default postSlice.reducer;

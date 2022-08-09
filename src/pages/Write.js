@@ -1,40 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import "./write.css"
-import { _postArticle } from "../redux/postslice";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import "./write.css";
+import { _postArticle } from "../redux/slices/postSlice";
+import { useNavigate } from "react-router-dom";
 
 const Write = () => {
   const dispatch = useDispatch();
-  const state = useSelector(state=>state.posts.article);
+  const navigate = useNavigate();
 
-  console.log(state);
-
-  // const [writeList, setwriteList] = useState([
-  //   {
-  //     "id": 1,
-  //     "name": "11",
-  //     "title": "11",
-  //     "content": "111"
-  //   }])
-
-  const [write, setWrite] = useState(
-    {
-      "id": 0,
-      "name": "",
-      "title": "",
-      "content": ""
-    })
+  const [write, setWrite] = useState({
+    id: 0,
+    name: "",
+    title: "",
+    content: "",
+  });
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
-    setWrite({ ...write, [name]: value })
-  }
+    setWrite({ ...write, [name]: value });
+  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     dispatch(_postArticle(write));
-  }
+    navigate("/");
+  };
 
   return (
     <form onSubmit={onSubmitHandler} className="warp">
@@ -73,10 +63,11 @@ const Write = () => {
       </div>
 
       {/* <div className="submitBox"> */}
-        <input value="취소" type="button" />
-        <input value="작성" type="submit" />
+      <input value="취소" type="button" />
+      <input value="작성" type="submit" />
       {/* </div> */}
-    </form>)
+    </form>
+  );
 };
 
 export default Write;

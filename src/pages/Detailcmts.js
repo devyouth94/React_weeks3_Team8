@@ -1,32 +1,25 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import {
   _Detailpost,
   _getDetailPosted,
   _deleteDetailPosted,
   _editDetailPosted,
-} from "../redux/commentsSlice";
+} from "../redux/slices/commentsSlice";
 import $ from "jquery";
 
 const Detailcmts = () => {
   const state = useSelector((state) => state.comments);
   const params = useParams();
-  const location = useLocation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const detailArr = state.posts.slice().sort((a, b) => b.id - a.id);
 
   useEffect(() => {
     dispatch(_getDetailPosted(params.id));
   }, []);
-
-  // 게시글의 제목이랑 타이틀 컨텐츠를 받아오는 부분
-  const name = "이름이름이름이름";
-  const title = "제목제목제목제목";
-  const contents = "내용내용내용내용";
 
   const title_ref = useRef(null);
   const contents_ref = useRef(null);
