@@ -5,7 +5,8 @@ import { _getArticle } from "../redux/slices/postSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.posts.article);
+  const getedstate = useSelector((state) => state.posts.article);
+  const state = getedstate.slice().sort((a, b) => b.id - a.id);
 
   useEffect(() => {
     dispatch(_getArticle());
