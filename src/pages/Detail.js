@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __deleteDetail, __getDetail, __updateDetail } from "../redux/slices/detailSlice";
+import Detailcmts from "./Detailcmts";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -78,6 +79,7 @@ const Detail = () => {
           <button onClick={onClickDelete}>삭제</button>
         </div>
       )}
+      <Detailcmts />
     </>
   );
 };
