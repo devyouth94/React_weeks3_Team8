@@ -24,6 +24,20 @@ const _deleteDetailPosted = createAsyncThunk("/delete", async (value) => {
   return value;
 });
 
+const _editDetailPosted = createAsyncThunk("detail/edit", async (value) => {
+  const putvalue = {
+    title: value.title,
+    contents: value.contents,
+    pswd: value.pswd,
+    postId: value.postId,
+  };
+  const getData = await axios.put(
+    `http://localhost:5001/comments/${value.id}`,
+    putvalue
+  );
+  return getData.data;
+});
+
 export const commentsSlice = createSlice({
   name: "comments",
   initialState,
@@ -41,9 +55,21 @@ export const commentsSlice = createSlice({
       });
       state.posts = result;
     },
+    [_editDetailPosted.fulfilled]: (state, action) => {
+      const result = state.posts.filter((value) => {
+        return value.id !== action.payload.id;
+      });
+      result.push(action.payload);
+      state.posts = result;
+    },
   },
 });
 
-export { _Detailpost, _getDetailPosted, _deleteDetailPosted };
+export {
+  _Detailpost,
+  _getDetailPosted,
+  _deleteDetailPosted,
+  _editDetailPosted,
+};
 export const { commentsdelete } = commentsSlice.actions;
 export default commentsSlice.reducer;

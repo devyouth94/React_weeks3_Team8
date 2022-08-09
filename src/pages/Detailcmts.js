@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
@@ -7,9 +6,11 @@ import {
   _Detailpost,
   _getDetailPosted,
   _deleteDetailPosted,
+  _editDetailPosted,
 } from "../redux/commentsSlice";
+import $ from "jquery";
 
-const Detail = (props) => {
+const Detail = () => {
   const state = useSelector((state) => state.comments);
   const params = useParams();
   const location = useLocation();
@@ -19,10 +20,19 @@ const Detail = (props) => {
   const detailArr = state.posts;
   const getedId = 1;
 
+  console.log("디테일 랜더링");
+
+  // 처음 뎃글 받아오는것, getedId는 detail/1의 1, useParams를 써서 가져와야함.
   useEffect(() => {
     dispatch(_getDetailPosted(getedId));
   }, []);
 
+  // 뒤로가기
+  const goback = () => {
+    navigate(-1);
+  };
+
+  // 게시글의 제목이랑 타이틀 컨텐츠를 받아오는 부분
   const name = "이름이름이름이름";
   const title = "제목제목제목제목";
   const contents = "내용내용내용내용";
@@ -30,8 +40,8 @@ const Detail = (props) => {
   const title_ref = useRef(null);
   const contents_ref = useRef(null);
   const pawd_ref = useRef(null);
-  const pswd_ref = useRef(null);
 
+  // 댓글을 작성하는 함수
   const putDetail = () => {
     if (title_ref.current.value === "") {
       alert("제목을 넣어주세요");
@@ -50,6 +60,14 @@ const Detail = (props) => {
     }
   };
 
+  // 댓글 작성하기 엔터누르면 바로 등록
+  const pressEnter = (e) => {
+    if (e.key === "Enter") {
+      putDetail();
+    }
+  };
+
+  // 삭제해주는 함수. 비밀번호를 확인하고 맞으면 삭제.
   const deleteComments = (value) => {
     if (value.input === "") {
       alert("비밀번호를 입력해주세요");
@@ -60,25 +78,27 @@ const Detail = (props) => {
     }
   };
 
+  // 수정버튼을 누르면 비밀번호 확인하고 맞으면 display를 보여준다.
   const editComments = (value) => {
-    console.log(value);
     if (value.input === "") {
       alert("비밀번호를 입력해주세요");
     } else if (value.input !== value.pswd) {
       alert("비밀번호가 틀렸습니다.");
     } else if (value.input == value.pswd) {
       document.getElementById(`inputbox${value.id}`).style.display = "flex";
-      console.log(`inputbox${value.id}`);
     }
   };
 
-  const goback = () => {
-    navigate(-1);
-  };
-
-  const pressEnter = (e) => {
-    if (e.key === "Enter") {
-      putDetail();
+  // 수정해주는 함수
+  const editHandler = (value) => {
+    if (value.title == "") {
+      alert("제목을 넣어주세요");
+    } else {
+      dispatch(_editDetailPosted(value));
+      document.getElementById(`inputbox${value.id}`).style.display = "none";
+      $(`#pswd${value.id}`).val("");
+      $(`#title${value.id}`).val("");
+      $(`#contents${value.id}`).val("");
     }
   };
 
@@ -129,11 +149,11 @@ const Detail = (props) => {
                 <CommentsBox>
                   {value.title}:: {value.contents}
                   <div>
-                    <PwBox placeholder="비밀번호" />
+                    <PwBox placeholder="비밀번호" id={`pswd` + value.id} />
                     <button
-                      onClick={(e) => {
+                      onClick={() => {
                         editComments({
-                          input: e.target.previousSibling.value,
+                          input: $(`#pswd${value.id}`).val(),
                           id: value.id,
                           pswd: value.pswd,
                         });
@@ -142,11 +162,11 @@ const Detail = (props) => {
                       수정
                     </button>
                     <button
-                      onClick={(e) => {
+                      onClick={() => {
                         deleteComments({
                           id: value.id,
                           pswd: value.pswd,
-                          input: e.target.previousSibling.previousSibling.value,
+                          input: $(`#pswd${value.id}`).val(),
                         });
                       }}
                     >
@@ -154,13 +174,27 @@ const Detail = (props) => {
                     </button>
                   </div>
                 </CommentsBox>
+
                 <EditInputBox id={`inputbox` + value.id}>
                   <div>
-                    <input placeholder="이름" />
-                    <input placeholder="내용" />
+                    <input placeholder="이름" id={`title` + value.id} />
+                    <input placeholder="내용" id={`contents` + value.id} />
                   </div>
-                  <button>완료</button>
+                  <button
+                    onClick={() => {
+                      editHandler({
+                        id: value.id,
+                        pswd: value.pswd,
+                        title: $(`#title${value.id}`).val(),
+                        contents: $(`#contents${value.id}`).val(),
+                        postId: params.id,
+                      });
+                    }}
+                  >
+                    완료
+                  </button>
                 </EditInputBox>
+
                 <CommentsLine />
               </div>
             );
@@ -212,8 +246,8 @@ const EditInputBox = styled.div`
   margin-left: 100px;
   justify-content: space-between;
   margin: auto;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 13px;
+  margin-top: 13px;
   display: none;
 `;
 
