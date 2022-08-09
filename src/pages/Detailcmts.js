@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -17,20 +17,11 @@ const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const detailArr = state.posts;
-  const getedId = 1;
+  const detailArr = state.posts.slice().sort((a, b) => b.id - a.id);
 
-  console.log("디테일 랜더링");
-
-  // 처음 뎃글 받아오는것, getedId는 detail/1의 1, useParams를 써서 가져와야함.
   useEffect(() => {
-    dispatch(_getDetailPosted(getedId));
+    dispatch(_getDetailPosted(params.id));
   }, []);
-
-  // 뒤로가기
-  const goback = () => {
-    navigate(-1);
-  };
 
   // 게시글의 제목이랑 타이틀 컨텐츠를 받아오는 부분
   const name = "이름이름이름이름";
@@ -104,18 +95,6 @@ const Detail = () => {
 
   return (
     <Bicbox>
-      <div>Detail {params.id}</div>
-      <div>
-        <p>안녕</p>
-        <div>
-          <p>{name}</p>
-          <p>{title}</p>
-          <p>{contents}</p>
-        </div>
-        <button>삭제</button>
-        <button onClick={goback}>뒤로가기</button>
-        <Line />
-      </div>
       <InputBox>
         <div>
           <input
@@ -208,10 +187,6 @@ const Bicbox = styled.div`
   text-align: center;
   width: 80%;
   margin: auto;
-`;
-
-const Line = styled.hr`
-  margin: 20px 0px 20px 0px;
 `;
 
 const InputBox = styled.div`
