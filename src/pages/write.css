@@ -1,0 +1,43 @@
+.warp {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.inputArea {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.inputArea input {
+  margin-left: 20px;
+}
+
+.inputArea .nameInput {
+  width: 30%;
+}
+.inputArea .titleInput {
+  width: 70%;
+}
+
+.writeBox {
+  margin-bottom: 20px;
+}
+
+.writeBox textarea {
+  width: 100%;
+  height: 400px;
+}
+
+.writeTitle {
+  width: 80%;
+}
+
+.submitBox {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submitBox input:last-child{
+  margin-left: 10px;
+}
