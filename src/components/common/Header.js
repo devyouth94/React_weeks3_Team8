@@ -1,15 +1,15 @@
 import React from "react";
-// import styled from "styled-components";
-import "./header.css"
+import "./header.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className="title">
-      <h1>
-        항해 대나무숲
-      </h1>
+      <Link to={"/"}>
+        <h1>항해 대나무숲</h1>
+      </Link>
     </div>
-  )
+  );
 };
 
 // const TopHeader = styled.div`
