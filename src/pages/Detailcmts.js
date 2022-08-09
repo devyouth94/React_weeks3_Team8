@@ -10,7 +10,7 @@ import {
 } from "../redux/commentsSlice";
 import $ from "jquery";
 
-const Detail = () => {
+const Detailcmts = () => {
   const state = useSelector((state) => state.comments);
   const params = useParams();
   const location = useLocation();
@@ -97,26 +97,11 @@ const Detail = () => {
     <Bicbox>
       <InputBox>
         <div>
-          <input
-            ref={title_ref}
-            type="text"
-            placeholder="이름"
-            onKeyPress={pressEnter}
-          />
-          <input
-            ref={contents_ref}
-            type="text"
-            placeholder="내용"
-            onKeyPress={pressEnter}
-          />
+          <input ref={title_ref} type="text" placeholder="이름" onKeyPress={pressEnter} />
+          <input ref={contents_ref} type="text" placeholder="내용" onKeyPress={pressEnter} />
         </div>
         <div>
-          <PwBox
-            ref={pawd_ref}
-            type="password"
-            placeholder="비밀번호"
-            onKeyPress={pressEnter}
-          />
+          <PwBox ref={pawd_ref} type="password" placeholder="비밀번호" onKeyPress={pressEnter} />
           <button onClick={putDetail}>입력</button>
         </div>
       </InputBox>
@@ -226,4 +211,4 @@ const EditInputBox = styled.div`
   display: none;
 `;
 
-export default Detail;
+export default Detailcmts;

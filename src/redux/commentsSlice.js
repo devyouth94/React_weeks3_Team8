@@ -9,62 +9,45 @@ const initialState = {
 
 const _Detailpost = createAsyncThunk("detail/post", async (value, thunkAPI) => {
   try {
-    const detailpost = await axios.post(
-      "http://localhost:5001/comments",
-      value
-    );
+    const detailpost = await axios.post("http://localhost:3001/comments", value);
     return thunkAPI.fulfillWithValue(detailpost.data);
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }
 });
 
-const _getDetailPosted = createAsyncThunk(
-  "/detail",
-  async (value, thunkAPI) => {
-    try {
-      const getDetail = await axios.get(
-        `http://localhost:5001/comments?postId=${value}`
-      );
-      return thunkAPI.fulfillWithValue(getDetail.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
+const _getDetailPosted = createAsyncThunk("/detail", async (value, thunkAPI) => {
+  try {
+    const getDetail = await axios.get(`http://localhost:3001/comments?postId=${value}`);
+    return thunkAPI.fulfillWithValue(getDetail.data);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
   }
-);
+});
 
-const _deleteDetailPosted = createAsyncThunk(
-  "/delete",
-  async (value, thunkAPI) => {
-    try {
-      await axios.delete(`http://localhost:5001/comments/${value}`);
-      return thunkAPI.fulfillWithValue(value);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
+const _deleteDetailPosted = createAsyncThunk("/delete", async (value, thunkAPI) => {
+  try {
+    await axios.delete(`http://localhost:3001/comments/${value}`);
+    return thunkAPI.fulfillWithValue(value);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
   }
-);
+});
 
-const _editDetailPosted = createAsyncThunk(
-  "detail/edit",
-  async (value, thunkAPI) => {
-    try {
-      const putvalue = {
-        title: value.title,
-        contents: value.contents,
-        pswd: value.pswd,
-        postId: value.postId,
-      };
-      const getData = await axios.put(
-        `http://localhost:5001/comments/${value.id}`,
-        putvalue
-      );
-      return thunkAPI.fulfillWithValue(getData.data);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
+const _editDetailPosted = createAsyncThunk("detail/edit", async (value, thunkAPI) => {
+  try {
+    const putvalue = {
+      title: value.title,
+      contents: value.contents,
+      pswd: value.pswd,
+      postId: value.postId,
+    };
+    const getData = await axios.put(`http://localhost:3001/comments/${value.id}`, putvalue);
+    return thunkAPI.fulfillWithValue(getData.data);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
   }
-);
+});
 
 export const commentsSlice = createSlice({
   name: "comments",
@@ -105,11 +88,6 @@ export const commentsSlice = createSlice({
   },
 });
 
-export {
-  _Detailpost,
-  _getDetailPosted,
-  _deleteDetailPosted,
-  _editDetailPosted,
-};
+export { _Detailpost, _getDetailPosted, _deleteDetailPosted, _editDetailPosted };
 export const { commentsdelete } = commentsSlice.actions;
 export default commentsSlice.reducer;
