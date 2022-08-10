@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __deleteDetail, __getDetail, __updateDetail } from "../redux/slices/detailSlice";
 import Detailcmts from "./Detailcmts";
+import { server_url } from "../redux/slices/index";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -35,11 +36,19 @@ const Detail = () => {
       setEditMode(false); // false면 수정 시에 필요한 UI가 사라진다
     }
   };
+  
+    // 모든 댓글을 삭제해주는 함수
+  const deleteAllCmts = () => {
+    cmtsstate.map((value) => {
+      axios.delete(`${server_url}/comments/${value.id}`);
+    });
+  };
 
   // 삭제 버튼 눌렀을 시 작동하는 함수
   const onClickDelete = () => {
     const confirm = window.confirm("정말 삭제하시겠습니까?"); // 정말 삭제할건지 묻는 컨펌창을 팝업시킨다
     if (confirm) {
+      deleteAllCmts();
       dispatch(__deleteDetail(id));
       navigate("/"); //삭제 후에 홈화면이 뜨게 한다
     }
