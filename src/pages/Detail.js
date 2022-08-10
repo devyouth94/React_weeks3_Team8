@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __deleteDetail, __getDetail, __updateDetail } from "../redux/slices/detailSlice";
 import Detailcmts from "./Detailcmts";
+import axios from "axios";
 import { server_url } from "../redux/slices/index";
 
 const Detail = () => {
