@@ -1,3 +1,5 @@
+@import url(/src/fonts/fonts.css);
+
 .warp {
   width: 50%;
   margin: 0 auto;
@@ -10,34 +12,89 @@
 }
 
 .inputArea input {
-  margin-left: 20px;
+  padding: 10px;
+
+  background: rgba(41, 41, 41, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.inputArea input:focus {
+  outline: none;
+}
+
+.inputArea input::placeholder {
+  color: white;
+  font-family: AppleSDGothicNeoB;
 }
 
 .inputArea .nameInput {
   width: 30%;
 }
+
+.inputArea .nameInput input {
+  color: white;
+  font-family: AppleSDGothicNeoB;
+  width: calc(100% - 10px)
+}
+
 .inputArea .titleInput {
   width: 70%;
 }
 
-.writeBox {
-  margin-bottom: 20px;
+.inputArea .titleInput input {
+  color: white;
+  font-family: AppleSDGothicNeoB;
+  width: calc(100% - 10px)
+}
+
+
+.inputArea .titleInput {
+  width: 70%;
+}
+
+.cancle {
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 0;
+  color: rgb(252, 59, 59);
+}
+
+.completion {
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 0;
+  color: rgb(55, 245, 86);
+}
+
+.cancle:hover {
+  color: rgb(255, 116, 116);
+}
+
+.completion:hover {
+  color: rgb(162, 255, 178);
 }
 
 .writeBox textarea {
   width: 100%;
   height: 400px;
+  padding: 20px 10px;
+  color: white;
+  font-family: AppleSDGothicNeoB;
+  font-size: 18px;
+
+  background: rgba(41, 41, 41, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.writeTitle {
-  width: 80%;
-}
-
-.submitBox {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.submitBox input:last-child{
-  margin-left: 10px;
+.writeBox textarea:focus {
+  outline: none;
 }

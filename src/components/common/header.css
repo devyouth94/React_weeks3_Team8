@@ -1,7 +1,11 @@
+@import url(/src/fonts/fonts.css);
+
 .title {
+  cursor: pointer;
+  font-family: AppleSDGothicNeoB;
   height: 100px;
   line-height: 100px;
-  background-color: gray;
+  background-color: transparent;
   text-align: center;
   font-size: 30px;
   margin-bottom: 20px;

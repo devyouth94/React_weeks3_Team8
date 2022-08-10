@@ -4,6 +4,7 @@ import "./write.css";
 import { _postArticle } from "../redux/slices/postSlice";
 import { useNavigate } from "react-router-dom";
 
+
 const Write = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,7 +31,6 @@ const Write = () => {
     <form onSubmit={onSubmitHandler} className="warp">
       <div className="inputArea">
         <div className="nameInput">
-          <label htmlFor="">이름</label>
           <input
             type="text"
             name="name"
@@ -40,7 +40,6 @@ const Write = () => {
           />
         </div>
         <div className="titleInput">
-          <label htmlFor="">제목</label>
           <input
             className="writeTitle"
             type="text"
@@ -50,6 +49,8 @@ const Write = () => {
             onChange={onChangeHandler}
           />
         </div>
+          <input className="cancle" value="✖" type="button" />
+          <input className="completion" value="✔" type="submit" />
       </div>
 
       <div className="writeBox">
@@ -63,8 +64,7 @@ const Write = () => {
       </div>
 
       {/* <div className="submitBox"> */}
-      <input value="취소" type="button" />
-      <input value="작성" type="submit" />
+
       {/* </div> */}
     </form>
   );

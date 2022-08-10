@@ -1,34 +1,18 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { _getArticle } from "../redux/slices/postSlice";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import GlassCard from "../components/elements/GlassCard";
+import Button from "../components/elements/Button"
+import "./home.css"
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const getedstate = useSelector((state) => state.posts.article);
-  const state = getedstate.slice().sort((a, b) => b.id - a.id);
-
-  useEffect(() => {
-    dispatch(_getArticle());
-  }, [dispatch]);
-
+  const navigate = useNavigate()
   return (
-    <>
-      <div>
-        <Link to={"/write"}>
-          <button>글작성하기</button>
-        </Link>
+    <div className="mainWarp">
+      <div onClick={() => navigate("/write")} className="btnWarp">
+        <Button>Write</Button>
       </div>
-      <div>
-        {state.map((value) => (
-          <div key={"k" + value.id}>
-            <Link to={`/detail/${value.id}`}>
-              <h2>{value.title}</h2>
-            </Link>
-          </div>
-        ))}
-      </div>
-    </>
+      <GlassCard></GlassCard>
+    </div>
   );
 };
 
