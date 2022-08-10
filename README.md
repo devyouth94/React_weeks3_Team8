@@ -19,11 +19,8 @@
 <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
 <img src="https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=MUI&logoColor=white">
 <br/>
-<img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=Heroku
-&logoColor=white">
-<img src="https://img.shields.io/badge/Vercel
--000000?style=for-the-badge&logo=Vercel
-&logoColor=white">
+<img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=Heroku&logoColor=white">
+<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white">
 
 ## ✅ Function
 
