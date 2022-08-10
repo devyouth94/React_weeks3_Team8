@@ -10,7 +10,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(_getArticle());
-  }, [dispatch]);
+  }, [state?.[0]?.id]);
 
   return (
     <>
