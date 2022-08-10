@@ -1,0 +1,33 @@
+@import url(/src/fonts/fonts.css);
+
+.glassCardWarp {
+  margin: 0 auto;
+  width: 70%;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.glassCard {
+  cursor: pointer;
+  font-family: AppleSDGothicNeoB;
+  font-size: 30px;
+  text-align: center;
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  word-break:break-all;
+
+  background: rgba(41, 41, 41, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glassCard a {
+  color: black;
+  text-decoration: none;
+}

@@ -1,13 +1,13 @@
 import React from "react";
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="title">
-      <Link to={"/"}>
-        <h1>항해 대나무숲</h1>
-      </Link>
+      <h1 onClick={() => navigate("/")}>항해 대나무숲</h1>
     </div>
   );
 };
