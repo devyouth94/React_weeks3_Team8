@@ -12,6 +12,7 @@ const Detail = () => {
   const { id } = useParams();
   const state = useSelector((state) => state.detail.article);
   const error = useSelector((state) => state.detail.error);
+  const cmtsstate = useSelector((state) => state.comments.posts);
 
   const [updateArticle, setUpdateArticle] = useState(""); //수정된 value값을 관리할 state
   const [editMode, setEditMode] = useState(false); // 조회, 수정 시 불리언 값에 따라 UI를 변경시켜주는 state
