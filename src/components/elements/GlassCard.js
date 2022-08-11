@@ -8,7 +8,7 @@ const GlassCard = () => {
   const dispatch = useDispatch();
   const getedstate = useSelector((state) => state.posts.article);
   const state = getedstate.slice().sort((a, b) => b.id - a.id);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(_getArticle());
@@ -20,7 +20,8 @@ const GlassCard = () => {
         <div
           className={style.glassCard}
           onClick={() => navigate(`/detail/${value.id}`)}
-          key={"k" + value.id}>
+          key={"k" + value.id}
+        >
           <h2>🎉{value.title}🎉</h2>
         </div>
       ))}
