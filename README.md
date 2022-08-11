@@ -41,6 +41,34 @@
 
 ## ✅ Function
 
+<h3 align="center">홈화면</h3>
+
+- 글쓰기 버튼을 누르면 작성 화면으로 이동합니다.
+- 카드 형태로 게시글들이 쌓이게 됩니다.
+
+<img width="1080" alt="스크린샷 2022-08-11 오후 8 48 18" src="https://user-images.githubusercontent.com/97172050/184127257-45710047-8349-4529-a9e7-a7dcb128a5bc.png">
+
+<h3 align="center">작성화면</h3>
+
+- 이름, 게시글 제목, 게시글 내용을 쓰고 체크버튼을 누르면 작성 완료.
+- 내용이 하나라도 비어있으면 내용을 써달라는 alert창이 발생합니다.
+- X버튼 클릭시 홈 화면으로 다시 이동합니다.
+
+<img width="1080" alt="스크린샷 2022-08-11 오후 8 48 32" src="https://user-images.githubusercontent.com/97172050/184127331-46effb5c-4391-4680-bc5d-f29e180dae15.png">
+
+<h3 align="center">상세화면</h3>
+
+- 이름, 게시글 제목, 게시글 내용을 볼 수 있고 수정 버튼과 삭제 버튼이 뜨게 됩니다.
+- 아래에는 댓글을 작성할 수 있습니다. 댓글과 비밀번호를 적고 비밀번호를 적어야만 해당 댓글을 삭제할 수 있습니다.
+
+<img width="1080" alt="스크린샷 2022-08-11 오후 8 49 02" src="https://user-images.githubusercontent.com/97172050/184127411-cdf78bba-2c3d-4edc-bae1-96701d032a02.png">
+
+<h3 align="center">수정화면</h3>
+
+- 게시글 내용을 수정할 수 있습니다.
+
+<img width="1080" alt="스크린샷 2022-08-11 오후 8 49 24" src="https://user-images.githubusercontent.com/97172050/184127465-9227bb23-b9e0-4c0b-9265-e6c42075eae3.png">
+
 ## 🧭 File Directory
 
 ```bash
