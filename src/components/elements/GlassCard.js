@@ -1,32 +1,29 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { _getArticle } from "../../redux/slices/postSlice";
-import style from "./glassCard.module.css";
+import React from "react";
+import styled from "styled-components";
 
-const GlassCard = () => {
-  const dispatch = useDispatch();
-  const getedstate = useSelector((state) => state.posts.article);
-  const state = getedstate.slice().sort((a, b) => b.id - a.id);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(_getArticle());
-  }, [state?.[0]?.id]);
-
-  return (
-    <div className={style.glassCardWarp}>
-      {state.map((value) => (
-        <div
-          className={style.glassCard}
-          onClick={() => navigate(`/detail/${value.id}`)}
-          key={"k" + value.id}
-        >
-          <h2>🎉{value.title}🎉</h2>
-        </div>
-      ))}
-    </div>
-  );
+const GlassCard = (props) => {
+  return <StyledGlassCard onClick={props.onClick}>{props.children}</StyledGlassCard>;
 };
+
+const StyledGlassCard = styled.div`
+  cursor: pointer;
+  font-size: 30px;
+  text-align: center;
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  word-break: break-all;
+
+  background: rgba(41, 41, 41, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  h2 {
+    font-weight: 600;
+  }
+`;
 
 export default GlassCard;

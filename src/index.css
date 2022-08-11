@@ -52,7 +52,7 @@ html {
   /* 전역 폰트 */
   font-family: "Apple SD Gothic Neo", sans-serif;
   font-style: normal;
-  font-weight: 100;
+  font-weight: 700;
 }
 
 *,
@@ -86,7 +86,7 @@ a {
 }
 
 /* body gradient */
-/* html {
+html {
   overflow-y: scroll;
 }
 
@@ -108,4 +108,4 @@ body {
   100% {
     background-position: 0% 50%;
   }
-} */
+}

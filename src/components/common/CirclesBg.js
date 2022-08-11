@@ -1,3 +1,5 @@
+// 배경에 떠다니는 모형을 만들기 위한 컴포넌트
+
 import React from "react";
 import styled from "styled-components";
 
