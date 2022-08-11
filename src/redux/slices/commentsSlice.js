@@ -8,7 +8,7 @@ const initialState = {
   error: null,
 };
 
-const _Detailpost = createAsyncThunk("detail/post", async (value, thunkAPI) => {
+const _Detailpost = createAsyncThunk("post/comments", async (value, thunkAPI) => {
   try {
     const detailpost = await axios.post(`${server_url}/comments`, value);
     return thunkAPI.fulfillWithValue(detailpost.data);
@@ -17,7 +17,7 @@ const _Detailpost = createAsyncThunk("detail/post", async (value, thunkAPI) => {
   }
 });
 
-const _getDetailPosted = createAsyncThunk("/detail", async (value, thunkAPI) => {
+const _getDetailPosted = createAsyncThunk("get/comments", async (value, thunkAPI) => {
   try {
     const getDetail = await axios.get(`${server_url}/comments?postId=${value}`);
     return thunkAPI.fulfillWithValue(getDetail.data);
@@ -26,7 +26,7 @@ const _getDetailPosted = createAsyncThunk("/detail", async (value, thunkAPI) => 
   }
 });
 
-const _deleteDetailPosted = createAsyncThunk("/delete", async (value, thunkAPI) => {
+const _deleteDetailPosted = createAsyncThunk("delete/comments", async (value, thunkAPI) => {
   try {
     await axios.delete(`${server_url}/comments/${value}`);
     return thunkAPI.fulfillWithValue(value);
@@ -35,7 +35,7 @@ const _deleteDetailPosted = createAsyncThunk("/delete", async (value, thunkAPI) 
   }
 });
 
-const _editDetailPosted = createAsyncThunk("detail/edit", async (value, thunkAPI) => {
+const _editDetailPosted = createAsyncThunk("put/comments", async (value, thunkAPI) => {
   try {
     const putvalue = {
       title: value.title,

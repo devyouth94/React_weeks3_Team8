@@ -8,7 +8,7 @@ const initialState = {
   error: null,
 };
 
-const _postArticle = createAsyncThunk("/postarticle", async (value, thunkAPI) => {
+const _postArticle = createAsyncThunk("post/article", async (value, thunkAPI) => {
   try {
     const data = await axios.post(`${server_url}/article`, value);
     return thunkAPI.fulfillWithValue(data.data);
@@ -17,7 +17,7 @@ const _postArticle = createAsyncThunk("/postarticle", async (value, thunkAPI) =>
   }
 });
 
-const _getArticle = createAsyncThunk("/getarticle", async (_, thunkAPI) => {
+const _getArticle = createAsyncThunk("get/articles", async (_, thunkAPI) => {
   try {
     const data = await axios.get(`${server_url}/article`);
     return thunkAPI.fulfillWithValue(data.data);

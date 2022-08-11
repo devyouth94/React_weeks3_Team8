@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { server_url } from ".";
 
-export const __getDetail = createAsyncThunk("detail/getDetail", async (id, thunkAPI) => {
+export const __getDetail = createAsyncThunk("get/article", async (id, thunkAPI) => {
   try {
     const { data } = await axios.get(`${server_url}/article/${id}`);
     return thunkAPI.fulfillWithValue(data);
@@ -11,7 +11,7 @@ export const __getDetail = createAsyncThunk("detail/getDetail", async (id, thunk
   }
 });
 
-export const __updateDetail = createAsyncThunk("detail/updateDetail", async (payload, thunkAPI) => {
+export const __updateDetail = createAsyncThunk("put/article", async (payload, thunkAPI) => {
   try {
     const { data } = await axios.patch(`${server_url}/article/${payload.id}`, payload);
     return thunkAPI.fulfillWithValue(data);
@@ -20,7 +20,7 @@ export const __updateDetail = createAsyncThunk("detail/updateDetail", async (pay
   }
 });
 
-export const __deleteDetail = createAsyncThunk("detail/deleteDetail", async (id, thunkAPI) => {
+export const __deleteDetail = createAsyncThunk("delete/article", async (id, thunkAPI) => {
   try {
     const { data } = await axios.delete(`${server_url}/article/${id}`);
     return thunkAPI.fulfillWithValue(data);
