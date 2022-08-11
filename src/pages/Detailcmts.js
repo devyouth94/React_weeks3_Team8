@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import Button from "../components/elements/Button";
 import {
   _Detailpost,
   _getDetailPosted,
@@ -89,25 +90,25 @@ const Detailcmts = () => {
   return (
     <Bicbox>
       <InputBox>
-        <div>
-          <input ref={title_ref} type="text" placeholder="이름" onKeyPress={pressEnter} />
-          <input ref={contents_ref} type="text" placeholder="내용" onKeyPress={pressEnter} />
-        </div>
-        <div>
-          <PwBox ref={pawd_ref} type="password" placeholder="비밀번호" onKeyPress={pressEnter} />
-          <button onClick={putDetail}>입력</button>
-        </div>
+        <InputWarp>
+          <NameInput ref={title_ref} type="text" placeholder="이름" onKeyPress={pressEnter} />
+          <CommentsInput ref={contents_ref} type="text" placeholder="내용" onKeyPress={pressEnter} />
+        </InputWarp>
+        <PwWarp>
+          <PwInput ref={pawd_ref} type="password" placeholder="비밀번호" onKeyPress={pressEnter} />
+          <Button marginLeft="10px" textcolor="rgb(55, 245, 86)" width="80px" onClick={putDetail}>✔</Button>
+        </PwWarp>
       </InputBox>
       <div>
         {detailArr.length &&
           detailArr.map((value) => {
             return (
-              <div key={"detailKey" + value.id}>
+              <CommentArea key={"detailKey" + value.id}>
                 <CommentsBox>
-                  {value.title}:: {value.contents}
-                  <div>
-                    <PwBox placeholder="비밀번호" id={`pswd` + value.id} />
-                    <button
+                  <CommentsWarp>{value.title}: {value.contents}</CommentsWarp>
+                  <EditWarp>
+                    <PwInput placeholder="비밀번호" id={`pswd` + value.id} />
+                    <Button marginLeft="10px" textcolor="rgb(55, 245, 86)" width="37px"
                       onClick={() => {
                         editComments({
                           input: $(`#pswd${value.id}`).val(),
@@ -116,9 +117,9 @@ const Detailcmts = () => {
                         });
                       }}
                     >
-                      수정
-                    </button>
-                    <button
+                      ✎
+                    </Button>
+                    <Button marginLeft="5px" textcolor="rgb(252, 59, 59);" width="37px"
                       onClick={() => {
                         deleteComments({
                           id: value.id,
@@ -127,33 +128,33 @@ const Detailcmts = () => {
                         });
                       }}
                     >
-                      삭제
-                    </button>
-                  </div>
+                      ✖
+                    </Button>
+                  </EditWarp>
                 </CommentsBox>
 
                 <EditInputBox id={`inputbox` + value.id}>
-                  <div>
-                    <input placeholder="이름" id={`title` + value.id} />
-                    <input placeholder="내용" id={`contents` + value.id} />
-                  </div>
-                  <button
-                    onClick={() => {
-                      editHandler({
-                        id: value.id,
-                        pswd: value.pswd,
-                        title: $(`#title${value.id}`).val(),
-                        contents: $(`#contents${value.id}`).val(),
-                        postId: params.id,
-                      });
-                    }}
-                  >
-                    완료
-                  </button>
+                  <EditInputWarp>
+                    <NameInput placeholder="이름" id={`title` + value.id} />
+                    <CommentsInput placeholder="내용" id={`contents` + value.id} />
+                  </EditInputWarp>
+                  <ButtonWarp>
+                    <Button textcolor="rgb(55, 245, 86)" width="37px"
+                      onClick={() => {
+                        editHandler({
+                          id: value.id,
+                          pswd: value.pswd,
+                          title: $(`#title${value.id}`).val(),
+                          contents: $(`#contents${value.id}`).val(),
+                          postId: params.id,
+                        });
+                      }}
+                    >
+                      ✔
+                    </Button>
+                  </ButtonWarp>
                 </EditInputBox>
-
-                <CommentsLine />
-              </div>
+              </CommentArea>
             );
           })}
       </div>
@@ -163,45 +164,136 @@ const Detailcmts = () => {
 
 const Bicbox = styled.div`
   text-align: center;
-  width: 80%;
-  margin: auto;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const InputBox = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 70%;
-  margin: auto;
-  margin-bottom: 40px;
+  width: 100%;
+  margin-bottom: 50px;
 `;
 
+const InputWarp = styled.div`
+  width: 65%;
+`
+
+const NameInput = styled.input`
+  width: 30%;
+  padding: 10px;
+  color: white;
+  font-family: AppleSDGothicNeoB;
+
+  background: rgba(41, 41, 41, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: white;
+  }
+`
+
+const CommentsInput = styled.input`
+  width: calc(70% - 10px) ;
+  margin-left: 10px;
+  padding: 10px;
+  color: white;
+  font-family: AppleSDGothicNeoB;
+
+  background: rgba(41, 41, 41, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: white;
+  }
+`
+
+const PwWarp = styled.div`
+  width: calc(30% - 10px);
+  text-align: right;
+`
+
+const CommentArea = styled.div`
+  margin-bottom: 40px;
+  color: white;
+  font-family: AppleSDGothicNeoB;
+`
+
 const CommentsBox = styled.div`
-  width: 70%;
-  margin: auto;
+  width: 100%;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  margin-top: 5px;
 `;
 
-const PwBox = styled.input`
-  width: 100px;
+const CommentsWarp = styled.p`
+  width: 65%;
+  overflow: hidden;
+  padding: 10px;
+  text-align: left;
+  word-wrap: break-word;  
+
+  background: rgba(41, 41, 41, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+`
+
+const EditWarp = styled.div`
+  height: 46px;
+`
+
+const PwInput = styled.input`
+  padding: 10px;
+  height: 100%;
+  color: white;
+  font-family: AppleSDGothicNeoB;
+
+  background: rgba(41, 41, 41, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: white;
+  }
 `;
 
-const CommentsLine = styled.hr`
-  margin: auto;
-  width: 70%;
-`;
 
 const EditInputBox = styled.div`
   display: flex;
-  width: 70%;
-  margin-left: 100px;
   justify-content: space-between;
-  margin: auto;
-  margin-bottom: 13px;
-  margin-top: 13px;
+  width: 100%;
   display: none;
+  margin-bottom: 30px;
+  
 `;
+
+const EditInputWarp = styled.div`
+  width: 65%;
+`
+
+const ButtonWarp = styled.div`
+
+`
 
 export default Detailcmts;

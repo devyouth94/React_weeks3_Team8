@@ -73,12 +73,12 @@ const Detail = () => {
           {editMode ? (
             <div>
               <Button onClick={onClickSave} textcolor="rgb(55, 245, 86)" width="37px">✔</Button>
-              <Button onClick={() => setEditMode(false)} textcolor="rgb(252, 59, 59);" width="37px">↺</Button>
+              <Button onClick={() => setEditMode(false)} textcolor="rgb(252, 59, 59);" width="37px" marginLeft="5px">↺</Button>
             </div>
           ) : (
             <div>
               <Button onClick={onClickUpdate} textcolor="rgb(55, 245, 86)" width="37px">✎</Button>
-              <Button onClick={onClickDelete} textcolor="rgb(252, 59, 59);" width="37px">✖</Button>
+              <Button onClick={onClickDelete} textcolor="rgb(252, 59, 59);" width="37px" marginLeft="5px">✖</Button>
             </div>
           )}
         </div>

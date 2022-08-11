@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div className="mainWarp">
       <div onClick={() => navigate("/write")} className="btnWarp">
-        <Button>Write</Button>
+        <Button width="300px" ftsize="20px" textcolor="white" >글쓰기</Button>
       </div>
       <GlassCard></GlassCard>
     </div>
