@@ -1,4 +1,4 @@
-# 리액트 3주차(심화 주차)
+## 리액트 3주차(심화 주차)
 
 📆 <strong>2022. 08. 05 ~ 08. 11</strong>
 <br/>
@@ -6,9 +6,15 @@
 
 ## 🖥 항해 대나무숲
 
-프로젝트 홈 화면
-<br />
-프로젝트 설명
+### 프로젝트 링크
+
+- [🎋 항해 대나무숲](https://bamboo-forest.vercel.app/)
+  <br />
+
+### 프로젝트 설명
+
+- 📢 항해 중에 힘들었던 점이나 하고싶었던 말을 익명의 힘을 빌려 허심탄회하게 얘기해보자!
+- ❌ 물론 상대방에게 불쾌감을 줄 수 있는 표현이나 욕설은 지양하자.
 
 ## 🛠 Stack
 
@@ -24,7 +30,6 @@
 <p>
   <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
   <img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
-  <img src="https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=MUI&logoColor=white">
 </p>
 
 - <strong>Server & Deploy</strong>
