@@ -22,7 +22,7 @@ h3,
 h4,
 h5,
 h6 {
-  overflow: auto;
+  overflow-y: scroll;
   margin: 0;
   padding: 0;
 }
