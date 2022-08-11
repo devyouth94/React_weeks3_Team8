@@ -6,6 +6,7 @@ import "./home.css";
 
 const Home = () => {
   const navigate = useNavigate();
+  console.log(1);
 
   return (
     <div className="mainWarp">

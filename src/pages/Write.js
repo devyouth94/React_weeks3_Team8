@@ -56,7 +56,7 @@ const Write = () => {
             onChange={onChangeHandler}
           />
         </div>
-        <input className="cancle" value="✖" type="button" />
+        <input onClick={() => navigate("/")} className="cancle" value="✖" type="button" />
         <input className="completion" value="✔" type="submit" />
       </div>
 
