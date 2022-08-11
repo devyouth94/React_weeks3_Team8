@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { _getArticle } from "../../redux/slices/postSlice";
-import style from "./glassCard.module.css"
+import style from "./glassCard.module.css";
 
 const GlassCard = () => {
   const dispatch = useDispatch();

@@ -4,7 +4,6 @@ import "./write.css";
 import { _postArticle } from "../redux/slices/postSlice";
 import { useNavigate } from "react-router-dom";
 
-
 const Write = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,8 +22,16 @@ const Write = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(_postArticle(write));
-    navigate("/");
+    if (
+      write.name.trim().length === 0 ||
+      write.title.trim().length === 0 ||
+      write.content.trim().length === 0
+    ) {
+      alert("내용이 비어있습니다.");
+    } else {
+      dispatch(_postArticle(write));
+      navigate("/");
+    }
   };
 
   return (
@@ -49,8 +56,8 @@ const Write = () => {
             onChange={onChangeHandler}
           />
         </div>
-          <input className="cancle" value="✖" type="button" />
-          <input className="completion" value="✔" type="submit" />
+        <input className="cancle" value="✖" type="button" />
+        <input className="completion" value="✔" type="submit" />
       </div>
 
       <div className="writeBox">
@@ -62,10 +69,6 @@ const Write = () => {
           onChange={onChangeHandler}
         />
       </div>
-
-      {/* <div className="submitBox"> */}
-
-      {/* </div> */}
     </form>
   );
 };

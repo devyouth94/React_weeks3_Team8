@@ -1,6 +1,6 @@
 import React from "react";
 import "./header.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -11,11 +11,5 @@ const Header = () => {
     </div>
   );
 };
-
-// const TopHeader = styled.div`
-//   background-color: lightgray;
-//   text-align: center;
-//   height: 80px;
-// `;
 
 export default Header;
