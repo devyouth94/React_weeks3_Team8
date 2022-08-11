@@ -52,3 +52,7 @@
 .editTextArea:focus {
   outline: none;
 }
+
+.textBox {
+  margin-bottom: 10px;
+}
