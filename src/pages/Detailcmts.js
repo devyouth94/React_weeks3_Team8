@@ -28,7 +28,7 @@ const Detailcmts = () => {
 
   // 댓글을 작성하는 함수
   const putDetail = () => {
-    if (title_ref.current.value === "") {
+    if (title_ref.current.value === "" || pawd_ref.current.value === "") {
       alert("제목을 넣어주세요");
     } else {
       dispatch(
