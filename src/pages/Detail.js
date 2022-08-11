@@ -103,7 +103,7 @@ const Detail = () => {
           )}
         </div>
 
-        <Detailcmts />
+        {editMode ? null : <Detailcmts />}
       </div>
     </>
   );
