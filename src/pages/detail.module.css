@@ -6,13 +6,12 @@
 .h2Warp {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px
+  margin-bottom: 20px;
 }
 
 .detailWarp h2 {
   padding: 10px;
   color: white;
-  font-family: AppleSDGothicNeoB;
   width: 100%;
 
   background: rgba(41, 41, 41, 0.35);
@@ -51,4 +50,8 @@
 
 .editTextArea:focus {
   outline: none;
+}
+
+.textBox {
+  margin-bottom: 10px;
 }

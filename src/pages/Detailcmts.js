@@ -92,33 +92,23 @@ const Detailcmts = () => {
       <InputBox>
         <InputWarp>
           <NameInput ref={title_ref} type="text" placeholder="이름" onKeyPress={pressEnter} />
-          <CommentsInput
-            ref={contents_ref}
-            type="text"
-            placeholder="내용"
-            onKeyPress={pressEnter}
-          />
+          <CommentsInput ref={contents_ref} type="text" placeholder="내용" onKeyPress={pressEnter} />
         </InputWarp>
         <PwWarp>
           <PwInput ref={pawd_ref} type="password" placeholder="비밀번호" onKeyPress={pressEnter} />
-          <Button marginLeft="10px" onClick={putDetail}>
-            입력
-          </Button>
+          <Button marginLeft="10px" textcolor="rgb(55, 245, 86)" width="80px" onClick={putDetail}>✔</Button>
         </PwWarp>
       </InputBox>
       <div>
-        {detailArr.length &&
-          detailArr.map((value) => {
+        {
+          detailArr?.map((value) => {
             return (
               <CommentArea key={"detailKey" + value.id}>
                 <CommentsBox>
-                  <CommentsWarp>
-                    {value.title}: {value.contents}
-                  </CommentsWarp>
+                  <CommentsWarp>{value.title}: {value.contents}</CommentsWarp>
                   <EditWarp>
                     <PwInput placeholder="비밀번호" id={`pswd` + value.id} />
-                    <Button
-                      marginLeft="10px"
+                    <Button marginLeft="10px" textcolor="rgb(55, 245, 86)" width="37px"
                       onClick={() => {
                         editComments({
                           input: $(`#pswd${value.id}`).val(),
@@ -127,10 +117,9 @@ const Detailcmts = () => {
                         });
                       }}
                     >
-                      수정
+                      ✎
                     </Button>
-                    <Button
-                      marginLeft="5px"
+                    <Button marginLeft="5px" textcolor="rgb(252, 59, 59);" width="37px"
                       onClick={() => {
                         deleteComments({
                           id: value.id,
@@ -139,7 +128,7 @@ const Detailcmts = () => {
                         });
                       }}
                     >
-                      삭제
+                      ✖
                     </Button>
                   </EditWarp>
                 </CommentsBox>
@@ -150,7 +139,7 @@ const Detailcmts = () => {
                     <CommentsInput placeholder="내용" id={`contents` + value.id} />
                   </EditInputWarp>
                   <ButtonWarp>
-                    <Button
+                    <Button textcolor="rgb(55, 245, 86)" width="37px"
                       onClick={() => {
                         editHandler({
                           id: value.id,
@@ -161,7 +150,7 @@ const Detailcmts = () => {
                         });
                       }}
                     >
-                      완료
+                      ✔
                     </Button>
                   </ButtonWarp>
                 </EditInputBox>
@@ -183,16 +172,18 @@ const InputBox = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 `;
 
 const InputWarp = styled.div`
-  width: 70%;
-`;
+  width: 65%;
+`
 
 const NameInput = styled.input`
   width: 30%;
   padding: 10px;
+  color: white;
+  font-family: AppleSDGothicNeoB;
 
   background: rgba(41, 41, 41, 0.35);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -200,12 +191,20 @@ const NameInput = styled.input`
   -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-`;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: white;
+  }
+`
 
 const CommentsInput = styled.input`
-  width: calc(70% - 10px);
+  width: calc(70% - 10px) ;
   margin-left: 10px;
   padding: 10px;
+  color: white;
+  font-family: AppleSDGothicNeoB;
 
   background: rgba(41, 41, 41, 0.35);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -213,16 +212,24 @@ const CommentsInput = styled.input`
   -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-`;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: white;
+  }
+`
 
 const PwWarp = styled.div`
   width: calc(30% - 10px);
   text-align: right;
-`;
+`
 
 const CommentArea = styled.div`
-  margin-bottom: 40px;
-`;
+  margin-bottom: 10px;
+  color: white;
+  font-family: AppleSDGothicNeoB;
+`
 
 const CommentsBox = styled.div`
   width: 100%;
@@ -237,7 +244,7 @@ const CommentsWarp = styled.p`
   overflow: hidden;
   padding: 10px;
   text-align: left;
-  word-wrap: break-word;
+  word-wrap: break-word;  
 
   background: rgba(41, 41, 41, 0.35);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -245,15 +252,17 @@ const CommentsWarp = styled.p`
   -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-`;
+`
 
 const EditWarp = styled.div`
   height: 46px;
-`;
+`
 
 const PwInput = styled.input`
   padding: 10px;
   height: 100%;
+  color: white;
+  font-family: AppleSDGothicNeoB;
 
   background: rgba(41, 41, 41, 0.35);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -261,7 +270,14 @@ const PwInput = styled.input`
   -webkit-backdrop-filter: blur(8.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: white;
+  }
 `;
+
 
 const EditInputBox = styled.div`
   display: flex;
@@ -269,12 +285,15 @@ const EditInputBox = styled.div`
   width: 100%;
   display: none;
   margin-bottom: 30px;
+  
 `;
 
 const EditInputWarp = styled.div`
   width: 65%;
-`;
+`
 
-const ButtonWarp = styled.div``;
+const ButtonWarp = styled.div`
+
+`
 
 export default Detailcmts;
