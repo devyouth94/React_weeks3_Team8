@@ -4,7 +4,7 @@ import "../../fonts/fonts.css"
 
 const Button = (props) => {
   return (
-    <StyledGlobalButton bgcolor={props.bgcolor} textcolor={props.textcolor}>
+    <StyledGlobalButton onClick={props.onClick} bgcolor={props.bgcolor} textcolor={props.textcolor} width={props.width}>
       {props.children}
     </StyledGlobalButton>
   );
@@ -12,13 +12,21 @@ const Button = (props) => {
 
 const StyledGlobalButton = styled.button`
 font-family: AppleSDGothicNeoSB;
+height: 46px;
+line-height: 0;
 cursor: pointer;
 background-color: ${(props) => props.bgcolor};
 color: ${(props) => props.textcolor};
-height: 34px;
+width: ${(props) => props.width};
+
+
 padding: 10px;
-border-radius: 17px;
-border: none;
+background: rgba(41, 41, 41, 0.35);
+box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+backdrop-filter: blur(8.5px);
+-webkit-backdrop-filter: blur(8.5px);
+border-radius: 10px;
+border: 1px solid rgba(255, 255, 255, 0.18);
 `;
 
 export default Button;

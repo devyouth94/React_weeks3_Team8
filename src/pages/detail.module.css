@@ -1,0 +1,54 @@
+.detailWarp {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.h2Warp {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px
+}
+
+.detailWarp h2 {
+  padding: 10px;
+  color: white;
+  font-family: AppleSDGothicNeoB;
+  width: 100%;
+
+  background: rgba(41, 41, 41, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.detailWarp .h2Tilte{
+  width: calc(70% - 50px);
+}
+
+.detailWarp .h2Writer{
+  width: calc(30% - 50px);
+}
+
+.contents,
+.editTextArea {
+  width: 100%;
+  height: 400px;
+  padding: 20px 10px;
+  color: white;
+  font-family: AppleSDGothicNeoB;
+  font-size: 18px;
+  resize: none;
+
+  background: rgba(41, 41, 41, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.editTextArea:focus {
+  outline: none;
+}

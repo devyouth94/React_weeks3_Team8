@@ -6,6 +6,7 @@ import "./home.css";
 
 const Home = () => {
   const navigate = useNavigate();
+
   return (
     <div className="mainWarp">
       <div onClick={() => navigate("/write")} className="btnWarp">

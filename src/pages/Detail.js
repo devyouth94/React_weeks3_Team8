@@ -5,6 +5,8 @@ import { __deleteDetail, __getDetail, __updateDetail } from "../redux/slices/det
 import Detailcmts from "./Detailcmts";
 import axios from "axios";
 import { server_url } from "../redux/slices/index";
+import Button from "../components/elements/Button"
+import style from "./detail.module.css"
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -38,8 +40,8 @@ const Detail = () => {
       setEditMode(false); // false면 수정 시에 필요한 UI가 사라진다
     }
   };
-  
-    // 모든 댓글을 삭제해주는 함수
+
+  // 모든 댓글을 삭제해주는 함수
   const deleteAllCmts = () => {
     cmtsstate.map((value) => {
       axios.delete(`${server_url}/comments/${value.id}`);
@@ -47,11 +49,11 @@ const Detail = () => {
   };
 
   // 삭제 버튼 눌렀을 시 작동하는 함수
-  const onClickDelete = () => {
+  const onClickDelete = async () => {
     const confirm = window.confirm("정말 삭제하시겠습니까?"); // 정말 삭제할건지 묻는 컨펌창을 팝업시킨다
     if (confirm) {
-      deleteAllCmts();
-      dispatch(__deleteDetail(id));
+      await deleteAllCmts();
+      await dispatch(__deleteDetail(id));
       navigate("/"); //삭제 후에 홈화면이 뜨게 한다
     }
   };
@@ -63,34 +65,39 @@ const Detail = () => {
 
   return (
     <>
-      <div>제목: {state.title}</div>
-      <div>글쓴이: {state.name}</div>
-      <div>
-        {editMode ? (
-          <div>
-            <textarea
-              name="content"
-              value={updateArticle}
-              onChange={(event) => setUpdateArticle(event.target.value)}
-            />
-          </div>
-        ) : (
-          <div>내용: {state.content}</div>
-        )}
-      </div>
+      <div className={style.detailWarp}>
+        <div className={style.h2Warp}>
+          <h2 className={style.h2Tilte}>제목: {state.title}</h2>
+          <h2 className={style.h2Writer}>글쓴이: {state.name}</h2>
 
-      {editMode ? (
-        <div>
-          <button onClick={onClickSave}>작성</button>
-          <button onClick={() => setEditMode(false)}>취소</button>
+          {editMode ? (
+            <div>
+              <Button onClick={onClickSave} textcolor="rgb(55, 245, 86)" width="37px">✔</Button>
+              <Button onClick={() => setEditMode(false)} textcolor="rgb(252, 59, 59);" width="37px">↺</Button>
+            </div>
+          ) : (
+            <div>
+              <Button onClick={onClickUpdate} textcolor="rgb(55, 245, 86)" width="37px">✎</Button>
+              <Button onClick={onClickDelete} textcolor="rgb(252, 59, 59);" width="37px">✖</Button>
+            </div>
+          )}
         </div>
-      ) : (
-        <div>
-          <button onClick={onClickUpdate}>수정</button>
-          <button onClick={onClickDelete}>삭제</button>
+        <div className={style.textBox}>
+          {editMode ? (
+            <div>
+              <textarea className={style.editTextArea}
+                name="content"
+                value={updateArticle}
+                onChange={(event) => setUpdateArticle(event.target.value)}
+              />
+            </div>
+          ) : (
+            <div className={style.contents}>내용: {state.content}</div>
+          )}
         </div>
-      )}
-      <Detailcmts />
+
+        <Detailcmts />
+      </div>
     </>
   );
 };

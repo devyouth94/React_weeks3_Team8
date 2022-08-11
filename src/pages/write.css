@@ -57,6 +57,7 @@
 }
 
 .cancle {
+  width: 37px;
   cursor: pointer;
   font-size: 18px;
   line-height: 0;
@@ -64,6 +65,7 @@
 }
 
 .completion {
+  width: 37px;
   margin-left: 5px;
   cursor: pointer;
   font-size: 18px;
@@ -86,6 +88,7 @@
   color: white;
   font-family: AppleSDGothicNeoB;
   font-size: 18px;
+  resize: none;
 
   background: rgba(41, 41, 41, 0.35);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
