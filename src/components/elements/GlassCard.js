@@ -7,12 +7,16 @@ const GlassCard = (props) => {
 
 const StyledGlassCard = styled.div`
   cursor: pointer;
+  display : table;
   font-size: 30px;
   text-align: center;
   width: 300px;
   height: 300px;
+  max-width: 300px;
+  max-height: 300px;
   padding: 20px;
   word-break: break-all;
+  overflow: hidden;
 
   background: rgba(41, 41, 41, 0.35);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -22,7 +26,9 @@ const StyledGlassCard = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.18);
 
   h2 {
-    font-weight: 600;
+    color: white;
+    display: table-cell;
+    vertical-align: middle;
   }
 `;
 

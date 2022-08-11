@@ -226,7 +226,7 @@ const PwWarp = styled.div`
 `
 
 const CommentArea = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   color: white;
   font-family: AppleSDGothicNeoB;
 `

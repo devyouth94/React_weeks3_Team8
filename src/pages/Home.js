@@ -23,6 +23,7 @@ const StyledWrapButton = styled.div`
   margin: 0 auto;
   text-align: center;
   margin-bottom: 30px;
+  height: 50px;
 `;
 
 export default Home;
