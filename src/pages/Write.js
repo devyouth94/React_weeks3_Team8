@@ -3,22 +3,13 @@ import { useDispatch } from "react-redux";
 import "./write.css";
 import { _postArticle } from "../redux/slices/postSlice";
 import { useNavigate } from "react-router-dom";
+import useInput from "../hooks/useInput";
 
 const Write = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [write, setWrite] = useState({
-    id: 0,
-    name: "",
-    title: "",
-    content: "",
-  });
-
-  const onChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setWrite({ ...write, [name]: value });
-  };
+  const [write, onChangeHandler] = useInput();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
